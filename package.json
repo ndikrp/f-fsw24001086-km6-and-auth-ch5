@@ -1,0 +1,25 @@
+{
+  "name": "challenge5",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ndikrp/f-fsw24001086-km6-and-auth-ch5.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ndikrp/f-fsw24001086-km6-and-auth-ch5/issues"
+  },
+  "homepage": "https://github.com/ndikrp/f-fsw24001086-km6-and-auth-ch5#readme",
+  "devDependencies": {
+    "eslint": "^8.57.0"
+  },
+  "dependencies": {
+    "express": "^4.19.2"
+  }
+}
