@@ -1,9 +1,14 @@
-require('dotenv').config();
-const express = require('express');
+require('dotenv').config()
+const express = require('express')
+const morgan = require('morgan')
+const fs = require('fs')
 
-const PORT = process.env.PORT || 8000;
+const app = express()
+const accessLogStream = fs.createWriteStream('./access.log', { flags: 'a' })
 
-const app = express();
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}`)
-})
+app.use(morgan('combined', { stream: accessLogStream }))
+app.use(morgan('dev'))
+
+app.use(express.json())
+
+module.exports = app
