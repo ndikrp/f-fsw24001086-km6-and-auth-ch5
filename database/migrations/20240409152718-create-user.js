@@ -20,7 +20,7 @@ module.exports = {
       },
       role: {
         type: Sequelize.STRING,
-        enum: ['admin', 'staff', 'superadmin']
+        enum: ['admin', 'member', 'superadmin']
       }
     });
   },

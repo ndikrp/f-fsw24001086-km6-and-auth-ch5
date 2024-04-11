@@ -1,7 +1,6 @@
 const bcrypt = require('bcrypt')
 const jwt = require('jsonwebtoken')
-const userService = require('../service/userService')
-const encryptPass = require('../database/config/encryption')
+const userService = require('../services/userService')
 
 function checkPassword(password, encryptedPassword) {
     return new Promise((resolve, reject) => {
@@ -44,7 +43,7 @@ module.exports = {
     async login(req, res) {
         if (!req.body.email || !req.body.password) {
             return res.status(422).json({
-                status: 'error',
+                status: 'Error',
                 message: 'Email and password are required'
             })
         } else {
@@ -54,26 +53,26 @@ module.exports = {
 
             if (!user) {
                 return res.status(404).json({
-                    status: 'error',
+                    status: 'Error',
                     message: 'Email not found / Not Registered'
                 })
             }
             const isPasswordCorrect = await checkPassword(password, user.password)
             if (!isPasswordCorrect) {
                 return res.status(401).json({
-                    status: 'error',
+                    status: 'Error',
                     message: 'Password is incorrect'
                 })
             }
-            const token = createToken({ 
+            const token = createToken({
                 id: user.id,
                 email: user.email,
                 name: user.name,
                 createdAt: user.createdAt,
-                updatedAt: user.updatedAt 
+                updatedAt: user.updatedAt
             })
             return res.status(200).json({
-                status: 'success',
+                status: 'Success!',
                 message: 'Login Success',
                 data: {
                     id: user.id,
@@ -83,5 +82,16 @@ module.exports = {
                 }
             })
         }
-    }
+    },
+    async authorizeMember(req, res, next) {
+        authorize(req, res, next, ["member", "admin", "superadmin"]);
+    },
+
+    async authorizeAdmin(req, res, next) {
+        authorize(req, res, next, ["admin", "superadmin"]);
+    },
+
+    async authorizeSuper(req, res, next) {
+        authorize(req, res, next, ["superadmin"]);
+    },
 }

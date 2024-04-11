@@ -1,5 +1,4 @@
 const userRepository = require('../repository/userRepository')
-const { get } = require('../server')
 
 module.exports = {
     create(requestBody) {
