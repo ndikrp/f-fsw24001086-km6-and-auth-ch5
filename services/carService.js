@@ -88,5 +88,32 @@ module.exports = {
         } catch (err) {
             throw err.message
         }
+    },
+    async get(id) {
+        const car = await carRepository.find(id)
+        if (car && car.deletedAt === null) {
+            const formattedCar = await formatCarData(car)
+            return formattedCar
+        }
+        return null
+    },
+    async forceGet(id) {
+        const car = await carRepository.find(id)
+        if (car && car.deletedAt !== null) {
+            const formattedCar = await formatDeletedCar(car)
+            return formattedCar
+        }
+        return null
+    },
+    async restore(id, user) {
+        const car = await carRepository.find(id)
+        if (car.deletedAt !== null) {
+            return carRepository.update(id, {
+                deletedByUser: null,
+                deletedAt: null,
+                lastUpdatedByUser: null,
+            })
+        }
+        return null
     }
 }
