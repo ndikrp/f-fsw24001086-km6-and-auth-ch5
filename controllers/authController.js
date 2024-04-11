@@ -15,9 +15,10 @@ function checkPassword(password, encryptedPassword) {
 }
 
 function createToken(payload) {
-    return jwt.sign(payload, process.env.JWT_SECRET)
+    const accessToken = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
+    const refreshToken = jwt.sign(payload, process.env.JWT_REFRESH); 
+    return { accessToken, refreshToken };
 }
-
 async function authorize(req, res, next, allowedRoles) {
     try {
         const bearerToken = req.headers.authorization
