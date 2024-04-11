@@ -47,7 +47,7 @@ module.exports = {
                 message: 'Email and password are required'
             })
         } else {
-            const email = req.body.email
+            const email = req.body.email.toLowerCase()
             const password = req.body.password
             const user = await userService.getByEmail(email)
 
@@ -67,7 +67,6 @@ module.exports = {
             const token = createToken({
                 id: user.id,
                 email: user.email,
-                name: user.name,
                 createdAt: user.createdAt,
                 updatedAt: user.updatedAt
             })
@@ -78,7 +77,10 @@ module.exports = {
                     id: user.id,
                     name: user.name,
                     email: user.email,
-                    token
+                    role: user.role,
+                    token,
+                    createdAt: user.createdAt,
+                    updatedAt: user.updatedAt,
                 }
             })
         }

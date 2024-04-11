@@ -52,7 +52,7 @@ async function register(req, res, role) {
                         email: user.email,
                         role: user.role,
                         createdAt: user.createdAt,
-                        updatedAt: user.updatedAt
+                        updatedAt: user.updatedAt,
                     }
                 })
             }).catch(err => {
@@ -82,9 +82,7 @@ module.exports = {
                 id: user.id,
                 name: user.name,
                 email: user.email,
-                role: user.role,
-                createdAt: user.createdAt,
-                updatedAt: user.updatedAt
+                role: user.role
             }
         })
     },

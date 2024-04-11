@@ -8,7 +8,7 @@ module.exports = {
         return User.destroy({ where: { id } })
     },
     find(id) {
-        return User.findByPk({ where: { id } })
+        return User.findByPk(id)
     },
     findAll() {
         return User.findAll()
