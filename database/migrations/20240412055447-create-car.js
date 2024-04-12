@@ -10,13 +10,19 @@ module.exports = {
         type: Sequelize.INTEGER
       },
       name: {
+        allowNull: false,
         type: Sequelize.STRING
       },
-      brand: {
+      size: {
+        allowNull: false,
         type: Sequelize.STRING
       },
-      model: {
-        type: Sequelize.STRING
+      rent_per_day: {
+        allowNull: false,
+        type: Sequelize.INTEGER
+      },
+      image_id: {
+        type: Sequelize.INTEGER
       },
       createdByUser: {
         type: Sequelize.INTEGER
@@ -26,6 +32,17 @@ module.exports = {
       },
       deletedByUser: {
         type: Sequelize.INTEGER
+      },
+      createdAt: {
+        type: Sequelize.DATE,
+        allowNull: false,
+      },
+      updatedAt: {
+        type: Sequelize.DATE,
+        allowNull: false,
+      },
+      deletedAt: {
+        type: Sequelize.DATE
       }
     });
   },
