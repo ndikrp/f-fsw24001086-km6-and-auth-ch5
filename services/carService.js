@@ -111,7 +111,7 @@ module.exports = {
             return carRepository.update(id, {
                 deletedByUser: null,
                 deletedAt: null,
-                lastUpdatedByUser: null,
+                lastUpdatedByUser: user.id,
             })
         }
         return null

@@ -15,9 +15,7 @@ function checkPassword(password, encryptedPassword) {
 }
 
 function createToken(payload) {
-    const accessToken = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
-    const refreshToken = jwt.sign(payload, process.env.JWT_REFRESH); 
-    return { accessToken, refreshToken };
+    return jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: process.env.JWT_EXPIRED });
 }
 async function authorize(req, res, next, allowedRoles) {
     try {
@@ -35,6 +33,7 @@ async function authorize(req, res, next, allowedRoles) {
         next()
     } catch (err) {
         res.status(401).json({
+            status: 'Failed',
             message: 'Unauthorized'
         })
     }
