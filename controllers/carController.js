@@ -10,6 +10,7 @@ module.exports = {
                     data,
                     meta: { total: count }
                 })
+                console.log(data)
             })
             .catch((err) => {
                 res.status(500).json({

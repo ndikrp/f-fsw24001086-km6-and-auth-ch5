@@ -1,8 +1,8 @@
 const router = require('express').Router()
-const Car = require('../controllers/')
+const Car = require('../controllers/carController')
 const Auth = require('../controllers/authController')
 
-router.get('/api/v1/cars', 
+router.get('/', 
     Auth.authorizeMember,
     Car.list)
 

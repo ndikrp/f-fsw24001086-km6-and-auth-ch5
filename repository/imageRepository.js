@@ -1,4 +1,4 @@
-const { Image } = require('../models')
+const { Image } = require('../database/models')
 
 module.exports = {
     create(createArgs) {

@@ -3,21 +3,21 @@ const Auth = require('../controllers/authController')
 const User = require('../controllers/userController')
 
 // Register (No Auth)
-router.post('/api/v1/register',
+router.post('/register',
     User.registerMember)
 // Login (No Auth)
-router.post('/api/v1/login',
+router.post('/login',
     Auth.login)
 // Register New Admin Acc (Super Admin Only)
-router.post('/api/v1/register/admin',
+router.post('/register/admin',
     Auth.authorizeSuper,
     User.registerAdmin)
 // My Profile Details (Require Member/Admin/Superadmin Auth Token)
-router.get('/api/v1/myprofile',
+router.get('/myprofile',
     Auth.authorizeMember,
     User.myProfile)
 // List of Users (Require Admin/Superadmin Auth Token)
-router.get('/api/v1/users',
+router.get('/users',
     Auth.authorizeAdmin,
     User.list)
 
