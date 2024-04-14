@@ -114,15 +114,17 @@ module.exports = {
                     message: 'Car not found'
                 })
             } else {
-                const allowedUpdate = ['name', 'size', 'rent_per_day', 'image_id']
-                for (const key of Object.keys(req.body)) {
-                    if (!allowedUpdate.includes(key)) {
-                        res.status(422).json({
-                            status: 'Error',
-                            message: `Invalid field: ${key}`
-                        })
-                        return
-                    }
+                const missingFields = []
+                if (!req.body.name) missingFields.push('name')
+                if (!req.body.size) missingFields.push('size')
+                if (!req.body.rent_per_day) missingFields.push('rent_per_day')
+                if (!req.body.image_id) missingFields.push('image_id')
+                if (missingFields.length > 0) {
+                    res.status(422).json({
+                        status: 'Error',
+                        message: `Missing required fields: ${missingFields.join(', ')}`
+                    })
+                    return
                 }
                 carService.update(req.params.id, req.user, req.body)
                     .then((car) => {
@@ -163,7 +165,7 @@ module.exports = {
                             status: 'Success!',
                             message: 'Car deleted'
                         })
-                    }) 
+                    })
                     .catch((err) => {
                         res.status(500).json({
                             status: 'Error',

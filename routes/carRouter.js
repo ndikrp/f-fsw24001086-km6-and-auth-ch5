@@ -11,5 +11,11 @@ router.get('/:id',
 router.post('/',
     Auth.authorizeAdmin,
     Car.create)
+router.put('/:id',
+    Auth.authorizeAdmin,
+    Car.update)
+router.delete('/:id',
+    Auth.authorizeSuper,
+    Car.delete)
 
 module.exports = router
