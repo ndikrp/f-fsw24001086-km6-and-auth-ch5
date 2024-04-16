@@ -2,7 +2,7 @@ const imageRepository = require('../repository/imageRepository')
 const { cloudinary, config } = require('../lib/cloudinary')
 
 module.exports = {
-    async uploadImage(image) {
+    async uploadImage(file) {
         const public_id = Date.now() + '-' + Math.round(Math.random() * 1E9)
         const result = await cloudinary.uploader
             .upload(file, {

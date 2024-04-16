@@ -8,6 +8,12 @@ router.get('/',
 router.get('/:id', 
     Auth.authorizeMember,
     Car.show)
+router.get('/deleted/:id',
+    Auth.authorizeSuper,
+    Car.forceShow)
+router.get('/deleted/:id/restore',
+    Auth.authorizeSuper,
+    Car.restore)
 router.post('/',
     Auth.authorizeAdmin,
     Car.create)
@@ -17,5 +23,8 @@ router.put('/:id',
 router.delete('/:id',
     Auth.authorizeSuper,
     Car.delete)
+router.delete('/deleted/:id/force',
+    Auth.authorizeSuper,
+    Car.permanentDelete)
 
 module.exports = router

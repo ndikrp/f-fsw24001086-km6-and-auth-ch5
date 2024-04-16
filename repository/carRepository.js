@@ -26,7 +26,7 @@ module.exports = {
     delete(id) {
         return Car.destroy({ where: { id } })
     },
-    forceDelete(id) {
+    permanentDelete(id) {
         return Car.destroy({ where: { id }, force: true })
     },
     restore(id) {
