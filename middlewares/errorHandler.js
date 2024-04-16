@@ -5,4 +5,10 @@ module.exports = {
             message: err.message || err
         });
     },
+    onLost(req, res) {
+        res.status(404).json({
+            status: "failed",
+            message: "Route not found!",
+        });
+    },
 };

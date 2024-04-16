@@ -1,6 +1,7 @@
 const router = require('express').Router()
 const Auth = require('../controllers/authController')
 const User = require('../controllers/userController')
+const err = require('../middlewares/ErrorHandler')
 
 // Login (No Auth)
 router.post('/login',
@@ -21,5 +22,7 @@ router.get('/myprofile',
     Auth.authorizeMember,
     User.myProfile)
 
+router.use(err.errorHandler)
+router.use(err.onLost)
 
 module.exports = router
