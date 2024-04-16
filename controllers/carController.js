@@ -19,22 +19,24 @@ module.exports = {
                 })
             })
     },
-    deletedList(req, res) {
-        carService.listDeleted()
+    listDeleted(req, res) {
+        carService
+            .listDeleted()
             .then(({ data, count }) => {
                 res.status(200).json({
-                    status: 'Success!',
-                    message: 'List of deleted cars',
+                    status: "success",
+                    message: "Get archived cars data successfully",
                     data,
-                    meta: { total: count }
-                })
+                    meta: { total: count },
+                });
             })
             .catch((err) => {
+                console.log(err);
                 res.status(500).json({
-                    status: 'Error',
-                    message: err.message
-                })
-            })
+                    status: "error",
+                    message: err.message,
+                });
+            });
     },
 
     async show(req, res) {

@@ -8,6 +8,10 @@ router.post('/',
     upload.single('image'),
     Image.upload)
 
+router.get('/:id',
+    Auth.authorizeMember,
+    Image.show)
+
 router.delete('/:id',
     Auth.authorizeAdmin,
     Image.delete)

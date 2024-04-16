@@ -61,17 +61,17 @@ module.exports = {
     },
     async listDeleted() {
         try {
-            const cars = await carRepository.findAll()
+            const cars = await carRepository.findAll();
             const filteredCars = cars.filter(car => car.deletedAt !== null)
             const formattedCar = await Promise.all(filteredCars.map(car => formatDeletedCar(car)))
-            const carCount = formattedCar.length
+            const carCount = formattedCar.length;
 
             return {
                 data: formattedCar,
-                count: carCount
-            }
+                count: carCount,
+            };
         } catch (err) {
-            throw err.message
+            throw err.message;
         }
     },
     async list() {

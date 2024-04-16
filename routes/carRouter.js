@@ -2,12 +2,15 @@ const router = require('express').Router()
 const Car = require('../controllers/carController')
 const Auth = require('../controllers/authController')
 
-router.get('/', 
+router.get('/',
     Auth.authorizeMember,
     Car.list)
-router.get('/:id', 
+router.get('/:id',
     Auth.authorizeMember,
     Car.show)
+router.get('/deleted/data',
+    Auth.authorizeSuper,
+    Car.listDeleted)
 router.get('/deleted/:id',
     Auth.authorizeSuper,
     Car.forceShow)
