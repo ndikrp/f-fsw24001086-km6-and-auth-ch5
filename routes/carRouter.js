@@ -1,6 +1,8 @@
 const router = require('express').Router()
 const Car = require('../controllers/carController')
 const Auth = require('../controllers/authController')
+const err = require('../middlewares/ErrorHandler')
+
 
 router.get('/',
     Auth.authorizeMember,
@@ -29,5 +31,8 @@ router.delete('/:id',
 router.delete('/deleted/:id/force',
     Auth.authorizeSuper,
     Car.permanentDelete)
+
+router.use(err.errorHandler)
+router.use(err.onLost)
 
 module.exports = router
