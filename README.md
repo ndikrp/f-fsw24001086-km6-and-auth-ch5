@@ -3,6 +3,7 @@ Fullstack Web Development Challenge 5 Binar Academy - FSW2402KM6004 Andhika Rizk
 
 A Car Rent Management REST API using express.js and postgreSQL as the database. Have CRUD operation, with image upload function and Authorization
 
+-----------------------
 # How to Use
 1. `git clone https://github.com/ndikrp/f-fsw24001086-km6-and-auth-ch5.git`
 2. `npm install` to install all the dependencies
@@ -14,6 +15,12 @@ A Car Rent Management REST API using express.js and postgreSQL as the database. 
               - run undo seed script `npm run undo-seed` to undo the seeders
 7. run `npm run start` to run the server
 8. Done
+
+-----------------------
+# Database Design
+![Database Diagram](docs/erd.png)
+
+-----------------------
 
 # Dependencies
 * [express](https://www.npmjs.com/package/express) (API Framework)
